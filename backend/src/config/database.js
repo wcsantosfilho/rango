@@ -1,7 +1,29 @@
 const mongoose = require('mongoose')
-mongoose.Promise = global.Promise
-module.exports = mongoose.connect('mongodb://localhost/rango', {useNewUrlParser: true})
+const config = require('./config')
 
+/*
+    * Set the database according with environment
+    * Should be changed by a configuration file later
+*/
+console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+console.log('xalala: ',process.env.NODE_ENV == "test")
+console.log('xuxux: ', typeof(process.env.NODE_ENV))
+console.log('xaxax: ', typeof("test"))
+console.log('xexex: ', typeof('test'))
+if (process.env.NODE_ENV.localeCompare("production")) {
+    MONGO_URI = config.production.mongodbURI
+}
+if (process.env.NODE_ENV.localeCompare("test")) {
+    MONGO_URI = config.test.mongodbURI
+}
+if (process.env.NODE_ENV.localeCompare("development")) {
+    MONGO_URI = config.development.mongodbURI
+}
+
+
+mongoose.Promise = global.Promise
+
+module.exports = mongoose.connect(MONGO_URI, {useNewUrlParser: true})
 mongoose.Error.messages.general.required = "O atributo '{PATH}' é obrigatório."
 mongoose.Error.messages.Number.min = 
     "O '{VALUE}' informado é menor que o limite mínimo de '{MIN}'."

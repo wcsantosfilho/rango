@@ -5,7 +5,7 @@
   "main": "src/loader.js",
   "scripts": {
     "test": "set NODE_ENV=test && tape ./tests/**/*.js | tap-spec",
-    "dev": "nodemon",
+    "dev": "set NODE_ENV=development nodemon",
     "production": "pm2 start src/loader.js --name rango-backend"
   },
   "keywords": [],

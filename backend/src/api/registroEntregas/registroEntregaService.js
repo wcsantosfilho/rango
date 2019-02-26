@@ -23,7 +23,21 @@ RegistroEntrega.route('summaryDate', (req, res, next) => {
         { $project : { _id: 1, qtde: 1}}
     ]). 
         then((result) => {
-            console.log(result)
+            res.json(result)
+        }
+    )
+})
+
+RegistroEntrega.route('summaryByDate', (req, res, next) => {
+    paramData = req.query.date.substring(1,11)
+    console.log(paramData)
+    RegistroEntrega.aggregate([
+        { $project : { day: {$substr: ["$dataEntrega", 0, 10]}, quantidade: {$sum: "$items.quantidadeEntrega"}}},
+        { $match: { day: paramData }},
+        { $group : { _id: "$day", qtde: {$sum: "$quantidade"}}},
+        { $project : { _id: 1, qtde: 1}}
+    ]). 
+        then((result) => {
             res.json(result)
         }
     )
