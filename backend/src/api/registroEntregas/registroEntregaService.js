@@ -14,7 +14,7 @@ RegistroEntrega.route('summary', (req, res, next) => {
             res.json(result[0])
         }
     )
-})
+}) 
 
 RegistroEntrega.route('summaryDate', (req, res, next) => {
     RegistroEntrega.aggregate([
