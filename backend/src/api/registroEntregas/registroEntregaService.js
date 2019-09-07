@@ -1,3 +1,4 @@
+/* Rotas do express */
 const RegistroEntrega = require('./registroEntrega')
 
 RegistroEntrega.methods(['get', 'post', 'put', 'delete'])

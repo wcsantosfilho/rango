@@ -6,17 +6,17 @@ const config = require('./config')
     * Should be changed by a configuration file later
 */
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-console.log('xalala: ',process.env.NODE_ENV == "test")
-console.log('xuxux: ', typeof(process.env.NODE_ENV))
-console.log('xaxax: ', typeof("test"))
-console.log('xexex: ', typeof('test'))
-if (process.env.NODE_ENV.localeCompare("production")) {
+
+if (process.env.NODE_ENV == "production") {
+    console.log("entrou no production")
     MONGO_URI = config.production.mongodbURI
 }
-if (process.env.NODE_ENV.localeCompare("test")) {
+if (process.env.NODE_ENV == "test") {
+    console.log("entrou no test")
     MONGO_URI = config.test.mongodbURI
 }
-if (process.env.NODE_ENV.localeCompare("development")) {
+if (process.env.NODE_ENV == "development") {
+    console.log("entrou no development")
     MONGO_URI = config.development.mongodbURI
 }
 
@@ -24,6 +24,7 @@ if (process.env.NODE_ENV.localeCompare("development")) {
 mongoose.Promise = global.Promise
 
 module.exports = mongoose.connect(MONGO_URI, {useNewUrlParser: true})
+console.log("MONGO_URI:" + MONGO_URI)
 mongoose.Error.messages.general.required = "O atributo '{PATH}' é obrigatório."
 mongoose.Error.messages.Number.min = 
     "O '{VALUE}' informado é menor que o limite mínimo de '{MIN}'."
