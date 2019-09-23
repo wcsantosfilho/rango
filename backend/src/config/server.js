@@ -9,7 +9,7 @@ const queryParser = require('express-query-int')
 // Set default node environment to development 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-server.use(bodyParser.urlencoded({ extended: true}))
+server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 server.use(allowCors)
 server.use(queryParser())

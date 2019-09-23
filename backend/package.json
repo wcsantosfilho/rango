@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/loader.js",
   "scripts": {
-    "test": "export NODE_ENV=test && tape ./tests/**/*.js | tap-spec",
+    "dropTestDB": "mongo BDscripts/dropBDTeste.js",
+    "test": "export NODE_ENV=test && tape ./tests/**/*.js | tap-spec && npm run dropTestDB",
     "dev": "export NODE_ENV=development && nodemon --watch src/loader.js",
     "production": "pm2 start src/loader.js --name rango-backend"
   },
